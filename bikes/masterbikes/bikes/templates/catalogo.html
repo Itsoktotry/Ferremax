@@ -1,0 +1,75 @@
+{% extends 'basec.html' %}
+
+{% block title %}
+Catalogo
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-12 col-md-2"></div>
+    <div class="col-sm-12 col-md-8">
+       
+
+
+        <select name="option" onchange="redirectToUrl(this)">
+            <option value="">Ordena por</option>
+            <option value="{% url 'ordenarn' %}">Nombre</option>
+            <option value="{% url 'ordenarc' %}">Categoria</option>
+        </select>
+      
+      
+      <script>
+        function redirectToUrl(selectElement) {
+            var selectedValue = selectElement.value;
+            if (selectedValue) {
+                window.location.href = selectedValue;
+            }
+        }
+      </script>
+      
+      
+            <table>
+              <thead>
+                <tr>
+                
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Imagen</th>
+                  <th scope="col">Descripcion</th>
+                  <th scope="col">Categoria</th>
+                  <th scope="col">Precio</th>
+                  
+                  
+                </tr>
+              </thead>
+              <tbody>
+                {% for producto in productos %}
+                <tr>
+                
+                  
+                  <td><a href="{% url 'detalle_producto' producto.nombre %}">
+                    <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="imagen-producto" width="200px" height="100">
+
+                </a></td>
+                  <td>{{ producto.nombre }}</td>
+                  <td>{{ producto.descripcion }}</td>
+                  <td>{{ producto.categoria }}</td>
+                  <td>{{ producto.precio }}</td>
+
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            <br>
+      
+
+
+
+
+
+
+
+        
+    </div>
+    <div class="col-sm-12 col-md-2"></div>
+</div>
+{% endblock %}

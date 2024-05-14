@@ -1,0 +1,46 @@
+{% extends 'basec.html' %}
+
+{% block title %}
+Bodeguero
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-12 col-md-2"></div>
+    <div class="col-sm-12 col-md-8">
+       
+
+
+
+        {% if formularios %}
+        <br>
+        <center><h1>Resultados de búsqueda para "{{ query }}":</h1></center>
+        <ul>
+            {% for producto in formularios %}
+            
+          
+            <a href="{% url 'detalle_producto' producto.nombre %}">
+            </a>
+            <p class="descripcion">
+                <span class="detalle">Nombre: {{ producto.nombre }}</span> <br>
+            </p>    
+            <hr>
+
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No se encontraron resultados para "{{ query }}".</p>
+        {% endif %}
+    </div>
+
+
+
+
+
+
+
+        
+    </div>
+    <div class="col-sm-12 col-md-2"></div>
+</div>
+{% endblock %}
